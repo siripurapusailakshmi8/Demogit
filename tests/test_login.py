@@ -117,3 +117,15 @@ class TestLogin:
 
         assert login_page.is_error_displayed()
         assert "username and passwords do not match" in login_page.get_error_message().lower()
+
+    def test_login_with_long_username_and_password(self, page):
+        """Test login with long username and password"""
+        login_page = LoginPage(page)
+
+        long_username = "a" * 256
+        long_password = "b" * 256
+
+        login_page.login(long_username, long_password)
+
+        assert login_page.is_error_displayed()
+        assert "username and passwords do not match" in login_page.get_error_message().lower()    
