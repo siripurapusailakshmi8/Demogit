@@ -6,6 +6,7 @@ def execution_time(func):
         end = time.time()
         result = end-start
         print("execution tme", result)
+        print("after the function this is for git demo purpose")
     return wrapper
 
 @execution_time
