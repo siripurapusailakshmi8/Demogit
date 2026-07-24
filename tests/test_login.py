@@ -105,3 +105,15 @@ class TestLogin:
     # def test_dummy_test(self, page):
     #     """Test dummy test"""
     #     assert 1 == 2
+
+    def test_login_with_special_characters(self, page):
+        """Test login with special characters in username and password"""
+        login_page = LoginPage(page)
+
+        special_username = "!@#$%^&*()_+"
+        special_password = "!@#$%^&*()_+"
+
+        login_page.login(special_username, special_password)
+
+        assert login_page.is_error_displayed()
+        assert "username and passwords do not match" in login_page.get_error_message().lower()
